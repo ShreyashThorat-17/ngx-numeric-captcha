@@ -24,26 +24,31 @@
 
 ## 🚀 Quick Start
 
-### 1. Import the Module
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { NgxNumericCaptchaModule } from 'ngx-numeric-captcha';
+### 1. Import the Captcha Component
+```ts
+import { Component } from '@angular/core';
+import { CaptchaResult, CaptchaType, NumericCaptchaComponent } from 'ngx-numeric-captcha';
 
-@NgModule({
-declarations: [AppComponent],
-imports: [
-BrowserModule,
-FormsModule, // Required for form controls
-NgxNumericCaptchaModule
-],
-bootstrap: [AppComponent]
+@Component({
+  selector: 'app-root',
+  imports:  [NumericCaptchaComponent],
+  templateUrl: './app.html',
+  styleUrl: './app.scss'
 })
-export class AppModule { }
+export class App {
+  isCaptchaVerified = false;
+  CaptchaType = CaptchaType;
+  
+  onCaptchaResult(result: CaptchaResult) {
+    this.isCaptchaVerified = result.isValid;
+  }
+  
+}
 
+```
 
 ### 2. Basic Usage
-
+```html
 <!-- In your parent template -->
 <div class="captcha">    
   <ngx-numeric-captcha
@@ -52,10 +57,11 @@ export class AppModule { }
     (captchaResult)="onCaptchaResult($event)">
   </ngx-numeric-captcha>
 </div>
+```
 
 
 ### 3. Handle Results
-
+```ts
   isCaptchaVerified = false;
   CaptchaType = CaptchaType;
   
@@ -63,13 +69,16 @@ export class AppModule { }
     this.isCaptchaVerified = result.isValid;
   }
 
-### 4. Results validation
+```  
 
+### 4. Results validation
+```ts
 if (result.isValid) {
   console.log('✅ CAPTCHA verified successfully!');
 } else {
   console.log('❌ Verification failed. Attempts:', result.attempts);
 }
+```
 
 
 ## 📚 API Documentation
@@ -94,7 +103,7 @@ if (result.isValid) {
 | `captchaResult` | `CaptchaResult` | Fired when user attempts verification |
 
 ### TypeScript Interfaces
-
+```ts
 enum CaptchaType {
 MATH = 'math',
 SLIDER = 'slider',
@@ -105,17 +114,19 @@ interface CaptchaResult {
 isValid: boolean; // Whether verification was successful
 attempts: number; // Number of attempts made
 }
+```
 
 ## 🎯 CAPTCHA Types
 
 ### Math CAPTCHA
 Simple arithmetic challenges perfect for quick verification.
-
+```html
 <ngx-numeric-captcha
 type="math"
 size="small"
 (captchaResult)="handleMath($event)">
 </ngx-numeric-captcha>
+```
 
 **Features:**
 - Addition, subtraction, and multiplication
@@ -125,13 +136,13 @@ size="small"
 
 ### Slider CAPTCHA
 Interactive position matching for engaging user experience.
-
+```html
 <ngx-numeric-captcha
 type="slider"
 size="medium"
 (captchaResult)="handleSlider($event)">
 </ngx-numeric-captcha>
-
+```
 
 **Features:**
 - Visual target indicator
@@ -141,13 +152,13 @@ size="medium"
 
 ### Pattern CAPTCHA
 Memory-based sequence challenges for enhanced security.
-
+```html
 <ngx-numeric-captcha
 type="pattern"
 size="small"
 (captchaResult)="handlePattern($event)">
 </ngx-numeric-captcha>
-
+```
 
 **Features:**
 - 3-number sequence challenges
@@ -158,7 +169,7 @@ size="small"
 ## 💡 Real-World Examples
 
 ### Login Form Integration
-
+```html
 <form class="login-form" (ngSubmit)="onLogin()" #loginForm="ngForm">
  <h2>Sign In</h2> 
  <div class="form-group"> 
@@ -180,8 +191,8 @@ size="small"
     Sign In
     </button>
 </form>
-
-
+```
+```ts
 export class LoginComponent {
   email = '';
   password = '';
@@ -203,9 +214,9 @@ export class LoginComponent {
     }
   }
 }
-
+```
 ### Registration Form
-
+```html
 <div class="registration-step">
   <h3>Complete Registration</h3>
   <p>Please verify you're human to continue</p>
@@ -222,10 +233,10 @@ export class LoginComponent {
     </button>
   </div>
 </div>
-
+```
 
 ### Comment Form
-
+```html
 <div class="comment-form">
   <textarea 
     [(ngModel)]="comment" 
@@ -247,11 +258,11 @@ export class LoginComponent {
     </button>
   </div>
 </div>
-
+```
 
 ### 🎨 Customization
 ### CSS Custom Properties
-
+```css
 ngx-numeric-captcha {
   --captcha-primary-color: #4CAF50;
   --captcha-secondary-color: #2196F3;
@@ -259,6 +270,7 @@ ngx-numeric-captcha {
   --captcha-border-radius: 8px;
   --captcha-font-family: 'Inter', sans-serif;
 }
+```
 
 
 ### Responsive
