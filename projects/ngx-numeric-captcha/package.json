@@ -1,0 +1,25 @@
+{
+  "name": "ngx-numeric-captcha",
+  "version": "1.0.3",
+  "peerDependencies": {
+    "@angular/common": ">=16.0.0 <21.0.0",
+    "@angular/core": ">=16.0.0 <21.0.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.0.0",
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "description": "Simple numeric captcha for Angular apps using standalone components.",
+  "keywords": [
+    "angular",
+    "captcha",
+    "numeric",
+    "math captcha",
+    "standalone",
+    "ngx",
+    "angular20",
+    "form security",
+    "ngx-numeric-captcha"
+  ]
+}

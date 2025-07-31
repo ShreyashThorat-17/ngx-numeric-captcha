@@ -3,5 +3,37 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "ngx-numeric-captcha": {
+      "projectType": "library",
+      "root": "projects/ngx-numeric-captcha",
+      "sourceRoot": "projects/ngx-numeric-captcha/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-numeric-captcha/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-numeric-captcha/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/ngx-numeric-captcha/tsconfig.spec.json",
+            "styles": [
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
   }
 }

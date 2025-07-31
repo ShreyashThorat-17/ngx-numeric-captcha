@@ -1,0 +1,86 @@
+<div class="compact-captcha" [class.small]="size === 'small'" [class.medium]="size === 'medium'">
+  
+  <!-- Math CAPTCHA -->
+  <div *ngIf="type === 'math'" class="math-captcha">
+    <div class="captcha-row">
+      <span class="expression">{{ mathExpression }} =</span>
+      <input 
+        [(ngModel)]="userAnswer" 
+        type="number" 
+        placeholder="?"
+        class="answer-input"
+        [disabled]="isVerified !== null"
+        (keyup.enter)="verify()"
+      />
+      <button class="verify-btn" (click)="verify()" [disabled]="isVerified === true">
+        <i class="fas fa-check"></i>
+      </button>
+      <button class="refresh-btn" (click)="refreshCaptcha()" [disabled]="isVerified === true">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Slider CAPTCHA -->
+  <div *ngIf="type === 'slider'" class="slider-captcha">
+    <div class="slider-header">
+      <span class="prompt">Match position</span>
+      <div class="actions">
+        <button class="verify-btn" (click)="verify()" [disabled]="isVerified === true">
+          <i class="fas fa-check"></i>
+        </button>
+        <button class="refresh-btn" (click)="refreshCaptcha()" [disabled]="isVerified === true">
+          <i class="fas fa-sync-alt"></i>
+        </button>
+      </div>
+    </div>
+    <div class="slider-track">
+      <div class="target-indicator" [style.left.%]="targetPosition"></div>
+      <input 
+        type="range" 
+        min="0" 
+        max="100" 
+        [(ngModel)]="sliderPosition"
+        class="slider"
+      />
+    </div>
+  </div>
+
+  <!-- Pattern CAPTCHA -->
+  <div *ngIf="type === 'pattern'" class="pattern-captcha">
+    <div class="pattern-header">
+      <span class="prompt">Repeat:</span>
+      <div class="pattern-sequence">
+        <span *ngFor="let item of patternSequence" class="pattern-item">{{ item + 1 }}</span>
+      </div>
+      <div class="actions">
+        <button class="verify-btn" (click)="verify()" [disabled]="isVerified === true">
+          <i class="fas fa-check"></i>
+        </button>
+        <button class="refresh-btn" (click)="refreshCaptcha()" [disabled]="isVerified === true">
+          <i class="fas fa-sync-alt"></i>
+        </button>
+      </div>
+    </div>
+    <div class="pattern-grid">
+      <button 
+        *ngFor="let item of [].constructor(patternSize); let i = index"
+        class="pattern-button"
+        [class.selected]="userPattern.includes(i)"
+        (click)="addToPattern(i)"
+        [disabled]="userPattern.length >= patternSequence.length"
+      >
+        {{ i + 1 }}
+      </button>
+    </div>
+    <button class="clear-btn" (click)="clearPattern()" *ngIf="userPattern.length > 0">Clear</button>
+  </div>
+
+  <!-- Status Indicator -->
+  <div class="status-indicator" *ngIf="isVerified !== null">
+    <i [class]="isVerified ? 'fas fa-check-circle success' : 'fas fa-times-circle error'"></i>
+    <span class="status-text">{{ isVerified ? 'Verified' : 'Try again' }}</span>
+    <span class="attempts" *ngIf="!isVerified">({{ attempts }}/{{ maxAttempts }})</span>
+  </div>
+  
+</div>
