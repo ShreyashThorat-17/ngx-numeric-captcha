@@ -38,7 +38,7 @@ export class NumericCaptchaComponent implements OnInit {
   // Slider CAPTCHA
   sliderPosition: number = 0;
   targetPosition: number = 0;
-  sliderTolerance: number = 8;
+  sliderTolerance: number = 2;
 
   // Pattern CAPTCHA
   patternSequence: number[] = [];
@@ -107,7 +107,7 @@ export class NumericCaptchaComponent implements OnInit {
     );
   }
 
-  verify() {
+ verify() {
     this.attempts++;
     let isCorrect = false;
 
@@ -130,8 +130,27 @@ export class NumericCaptchaComponent implements OnInit {
       attempts: this.attempts
     });
 
+    // Only auto-refresh on wrong answer if not at max attempts
     if (!isCorrect && this.attempts < this.maxAttempts) {
-      setTimeout(() => this.initializeCaptcha(), 1500);
+      setTimeout(() => {
+        // Don't reset attempts here - just generate new captcha
+        this.resetState();
+        this.generateNewCaptcha();
+      }, 1500);
+    }
+  }
+
+    private generateNewCaptcha() {
+    switch (this.type) {
+      case CaptchaType.MATH:
+        this.generateMathCaptcha();
+        break;
+      case CaptchaType.SLIDER:
+        this.generateSliderCaptcha();
+        break;
+      case CaptchaType.PATTERN:
+        this.generatePatternCaptcha();
+        break;
     }
   }
 
@@ -152,6 +171,7 @@ export class NumericCaptchaComponent implements OnInit {
   }
 
   refreshCaptcha() {
+    this.attempts = 0;
     this.initializeCaptcha();
   }
 

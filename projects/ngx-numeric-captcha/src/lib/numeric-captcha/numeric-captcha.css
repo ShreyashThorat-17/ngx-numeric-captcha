@@ -47,6 +47,9 @@
 
 
 .slider-captcha {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   .slider-header {
     display: flex;
     align-items: center;
@@ -71,7 +74,7 @@
     
     .target-indicator {
       position: absolute;
-      top: -8px;
+      top: -10px;
       width: 2px;
       height: 20px;
       background: #FF5722;

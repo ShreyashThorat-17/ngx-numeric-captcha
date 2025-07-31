@@ -1,25 +1,63 @@
 {
   "name": "ngx-numeric-captcha",
-  "version": "1.0.3",
+  "version": "1.1.0",
+  "description": "A lightweight Angular CAPTCHA library with Math, Slider, and Pattern verification types. Compact design perfect for login forms and secure applications.",
+  "keywords": [
+    "angular",
+    "captcha",
+    "verification",
+    "security",
+    "math-captcha",
+    "slider-captcha", 
+    "pattern-captcha",
+    "numeric-captcha",
+    "human-verification",
+    "bot-protection",
+    "form-validation",
+    "compact-captcha",
+    "responsive-captcha",
+    "typescript",
+    "ngx",
+    "angular17",
+    "angular18",
+    "angular19",
+    "angular20",
+    "standalone-components",
+    "login-security",
+    "registration-form",
+    "inline-svg",
+    "zero-dependencies"
+  ],
+  "author": "Shreyash Thorat",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ngx-numeric-captcha.git"
+  },
+  "homepage": "https://github.com/yourusername/ngx-numeric-captcha#readme",
+  "bugs": {
+    "url": "https://github.com/yourusername/ngx-numeric-captcha/issues"
+  },
   "peerDependencies": {
     "@angular/common": ">=16.0.0 <21.0.0",
     "@angular/core": ">=16.0.0 <21.0.0"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.0.0",
     "tslib": "^2.3.0"
   },
   "sideEffects": false,
-  "description": "Simple numeric captcha for Angular apps using standalone components.",
-  "keywords": [
-    "angular",
-    "captcha",
-    "numeric",
-    "math captcha",
-    "standalone",
-    "ngx",
-    "angular20",
-    "form security",
-    "ngx-numeric-captcha"
-  ]
+  "main": "bundles/ngx-numeric-captcha.umd.js",
+  "module": "fesm2022/ngx-numeric-captcha.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm": "./esm2022/ngx-numeric-captcha.mjs",
+      "default": "./fesm2022/ngx-numeric-captcha.mjs"
+    }
+  }
 }
+

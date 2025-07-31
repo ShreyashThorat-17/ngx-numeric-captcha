@@ -13,10 +13,14 @@
         (keyup.enter)="verify()"
       />
       <button class="verify-btn" (click)="verify()" [disabled]="isVerified === true">
-        <i class="fas fa-check"></i>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        </svg>
       </button>
       <button class="refresh-btn" (click)="refreshCaptcha()" [disabled]="isVerified === true">
-        <i class="fas fa-sync-alt"></i>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+        </svg>
       </button>
     </div>
   </div>
@@ -27,10 +31,14 @@
       <span class="prompt">Match position</span>
       <div class="actions">
         <button class="verify-btn" (click)="verify()" [disabled]="isVerified === true">
-          <i class="fas fa-check"></i>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
         </button>
         <button class="refresh-btn" (click)="refreshCaptcha()" [disabled]="isVerified === true">
-          <i class="fas fa-sync-alt"></i>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+          </svg>
         </button>
       </div>
     </div>
@@ -55,10 +63,14 @@
       </div>
       <div class="actions">
         <button class="verify-btn" (click)="verify()" [disabled]="isVerified === true">
-          <i class="fas fa-check"></i>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
         </button>
         <button class="refresh-btn" (click)="refreshCaptcha()" [disabled]="isVerified === true">
-          <i class="fas fa-sync-alt"></i>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+          </svg>
         </button>
       </div>
     </div>
@@ -76,11 +88,18 @@
     <button class="clear-btn" (click)="clearPattern()" *ngIf="userPattern.length > 0">Clear</button>
   </div>
 
-  <!-- Status Indicator -->
-  <div class="status-indicator" *ngIf="isVerified !== null">
-    <i [class]="isVerified ? 'fas fa-check-circle success' : 'fas fa-times-circle error'"></i>
-    <span class="status-text">{{ isVerified ? 'Verified' : 'Try again' }}</span>
-    <span class="attempts" *ngIf="!isVerified">({{ attempts }}/{{ maxAttempts }})</span>
-  </div>
+ <!-- Status Indicator -->
+<div class="status-indicator" *ngIf="isVerified !== null">
+  <svg *ngIf="isVerified" width="16" height="16" viewBox="0 0 24 24" fill="#4CAF50">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+  </svg>
+  <svg *ngIf="!isVerified" width="16" height="16" viewBox="0 0 24 24" fill="#F44336">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6L12 10.5 8.5 8 7 9.5 10.5 12 7 14.5 8.5 16 12 13.5 15.5 16 17 14.5 13.5 12 17 9.5 15.5 8z"/>
+  </svg>
+  <span class="status-text">{{ isVerified ? 'Verified' : 'Try again' }}</span>
+  <span class="attempts" *ngIf="!isVerified && attempts < maxAttempts">({{ attempts }}/{{ maxAttempts }})</span>
+  <span class="attempts-max" *ngIf="!isVerified && attempts >= maxAttempts">Max attempts reached</span>
+</div>
+
   
 </div>
